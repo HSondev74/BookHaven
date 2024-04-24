@@ -170,6 +170,7 @@ if (isset($_GET['id'])) {
      </div>
 
      <form method="post" action="pages/uploadComment.php" style="margin: 20px 0;">
+          <input type="hidden" name="id" value="<?php echo $idsp ?>">
           <textarea id="editor" name="comment" id="" cols="30" rows="10" style="width: 100%; padding: 10px;"></textarea>
           <?php
                          if (isset($_SESSION['dangnhap'])) {
@@ -185,9 +186,8 @@ if (isset($_GET['id'])) {
      </form>
 
      <?php
-                    $sql1 = "SELECT * FROM comments ORDER BY created_at ASC LIMIT 10";
+                   $sql1 = "SELECT * FROM comments WHERE product_id = {$idsp} ORDER BY created_at DESC LIMIT 10";
                     $result1 = mysqli_query($conn, $sql1);
-
                     if (mysqli_num_rows($result1) > 0) {
                          while ($row1 = mysqli_fetch_assoc($result1)) {
                               $timestamp = strtotime($row1['created_at']);
