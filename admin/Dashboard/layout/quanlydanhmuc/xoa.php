@@ -17,9 +17,9 @@ if (!$conn) {
 // xoa
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
-  $sql_xoa = "Delete from sanpham where ID = '" . $id . "' ";
+  $sql_xoa = " Delete from danhmuc where danhmuc_id = '" . $id . "' ";
   mysqli_query($conn, $sql_xoa);
   echo "<script>alert('Bạn đã xóa thành công!')
-      window.location.href='../../../index.php?action=sanpham&query=them'
       </script>";
+  echo "<script>window.history.back();</script>";
 }

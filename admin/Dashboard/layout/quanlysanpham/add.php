@@ -20,15 +20,14 @@ $row_lietke = mysqli_query($conn, $sql_lietke);
 color: var(--blue);">Sản phẩm</a>
      </li>
 </ul>
-<div class="board" style="width: 80%;
+<div class="board" style="width: 90%;
             margin: 20px auto;
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
      <h2>Thêm Sản Phẩm</h2>
-     <form action="Dashboard/layout/quanlysanpham/xuly.php" method="post" class="form-sanpham"
-          enctype="multipart/form-data">
+     <form action="Dashboard/layout/quanlysanpham/xuly.php" method="post" class="form-sanpham" enctype="multipart/form-data">
           <div class="form-group">
                <label for="tensanpham">Tên Sản Phẩm</label>
                <input type="text" id="tensanpham" name="tensanpham" required>
@@ -44,7 +43,7 @@ color: var(--blue);">Sản phẩm</a>
           </div>
           <div class="form-group">
                <label for="tonkho">Số Lượng</label>
-               <input type="number" id="tonkho" name="tonkho" required>
+               <input  class="number" type="number" id="tonkho" name="tonkho" required>
           </div>
           <div class="form-group">
                <label for="mota">Mô Tả</label>
@@ -62,12 +61,12 @@ color: var(--blue);">Sản phẩm</a>
                     while ($row = mysqli_fetch_array($row_lietke)) {
                          $i++;
                     ?>
-                    <option value="<?php echo $row['danhmuc_id'] ?>"><?php echo $row['tendanhmuc'] ?></option>
+                         <option value="<?php echo $row['danhmuc_id'] ?>"><?php echo $row['tendanhmuc'] ?></option>
                     <?php } ?>
                </select>
           </div>
           <div class="form-group">
-               <button type="submit" name="addSanpham">Thêm Sản Phẩm</button>
+               <button class="button-add-product" type="submit" name="addSanpham">Thêm Sản Phẩm</button>
           </div>
      </form>
 </div>
