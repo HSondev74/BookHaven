@@ -53,7 +53,7 @@
                     $result_danhmuc = mysqli_query($conn, $sql_danhmuc);
                     if (mysqli_num_rows($result_danhmuc) > 0) {
                         $danhmuc = mysqli_fetch_assoc($result_danhmuc);
-                        echo  "<a href='$trangchu_href'>$trangchu</a>" . ' &gt ' . $danhmuc['Ten'] . ' &gt ' . $product['TenTheloai'];
+                        echo  "<a href='$trangchu_href'>$trangchu</a>" . ' &gt ' . $danhmuc['TenTheloai'] . ' &gt ' . $product['Theloai_ID'];
                     }
                 }
             }

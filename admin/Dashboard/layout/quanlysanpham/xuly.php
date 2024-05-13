@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "dbbansach";
+$database = "ban_sach";
 
 // Tạo kết nối
 $conn = mysqli_connect($servername, $username, $password, $database);
@@ -18,7 +18,6 @@ if (isset($_POST['addSanpham'])) {
     $gia = str_replace(".", "", $_POST['gia']);
     $tonkho = mysqli_real_escape_string($conn, $_POST['tonkho']);
     $mota = mysqli_real_escape_string($conn, $_POST['mota']);
-    $all_sizes = implode(',', $_POST['size']);
     $danhmuc_id = mysqli_real_escape_string($conn, $_POST['danhmuc_id']);
     $targetDir = "uploads/";
 
@@ -51,8 +50,8 @@ if (isset($_POST['addSanpham'])) {
     $hinhanh = implode(',', $uploadedImages);
 
     // Tạo câu truy vấn thêm mới sản phẩm
-    $sql = "INSERT INTO sanpham (tensanpham, size, gia, hinhanh, tonkho, danhmuc_id, mota) 
-            VALUES ('$tensp', '$all_sizes', '$gia', '$hinhanh', '$tonkho', '$danhmuc_id', '$mota')";
+    $sql = "INSERT INTO sanpham (Ten, Gia, Hinhanh, Theloai_ID, Mota) 
+            VALUES ('$tensp', '$gia', '$hinhanh', '$danhmuc_id', '$mota')";
 
     // Thực thi câu truy vấn
     mysqli_query($conn, $sql);

@@ -47,7 +47,7 @@ $row_lietke = mysqli_query($conn, $sql_lietke);
                     border: none;
                     border-radius: 4px;
                     cursor: pointer;"
-                  href="Dashboard/layout/quanlydanhmuc/xuly.php?id=<?php echo $row['Theloai_ID'] ?>">Xóa</a>
+                  href="Dashboard/layout/quanlydanhmuc/xoa.php?id=<?php echo $row['Theloai_ID'] ?>">Xóa</a>
             </td>
          </tr>
          <?php } ?>
