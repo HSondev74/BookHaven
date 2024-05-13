@@ -1,5 +1,5 @@
 <?php
-$sql_lietke = "SELECT * FROM theloai ORDER BY matheloai DESC";
+$sql_lietke = "SELECT * FROM theloai ORDER BY Theloai_ID DESC";
 $row_lietke = mysqli_query($conn, $sql_lietke);
 
 ?>
@@ -43,7 +43,7 @@ color: var(--blue);">Sản phẩm</a>
           </div>
           <div class="form-group">
                <label for="tonkho">Số Lượng</label>
-               <input  class="number" type="number" id="tonkho" name="tonkho" required>
+               <input class="number" type="number" id="tonkho" name="tonkho" required>
           </div>
           <div class="form-group">
                <label for="mota">Mô Tả</label>
@@ -61,7 +61,7 @@ color: var(--blue);">Sản phẩm</a>
                     while ($row = mysqli_fetch_array($row_lietke)) {
                          $i++;
                     ?>
-                         <option value="<?php echo $row['danhmuc_id'] ?>"><?php echo $row['tendanhmuc'] ?></option>
+                         <option value="<?php echo $row['Theloai_ID'] ?>"><?php echo $row['TenTheloai'] ?></option>
                     <?php } ?>
                </select>
           </div>

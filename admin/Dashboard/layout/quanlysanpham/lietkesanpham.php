@@ -39,7 +39,7 @@
 
                     echo "<td><img src='Dashboard/layout/quanlysanpham/uploads/" . $images . "' alt='Product Image' class='product-image'></td>";
                     // echo "<td>" . $row["tonkho"] . "</td>";
-                    echo "<td>" . $row["matheloai"] . "</td>";
+                    echo "<td>" . $row["Theloai_ID"] . "</td>";
                     echo "<td style='max-width: 500px; word-wrap: break-word;overflow-wrap: break-word;' >" . $row["Mota"] . "</td>";
                     echo "<td><a href='?action=sanpham&query=sua&id=" . $row["ID"] . "' style='background-color: orange;
                     color: white;

@@ -31,7 +31,7 @@
         if (isset($_GET['category'])) {
             $category_id = $_GET['category'];
             // Truy vấn cơ sở dữ liệu để lấy tên danh mục dựa trên category_id
-            $sql_category_name = "SELECT Ten FROM theloai WHERE matheloai = $category_id";
+            $sql_category_name = "SELECT Ten FROM theloai WHERE Theloai_ID = $category_id";
             $result_category_name = mysqli_query($conn, $sql_category_name);
             if (mysqli_num_rows($result_category_name) > 0) {
                 $category_name = mysqli_fetch_assoc($result_category_name)['TenTheloai'];
@@ -47,9 +47,9 @@
             $result_id = mysqli_query($conn, $sql_id);
             if (mysqli_num_rows($result_id) > 0) {
                 $product = mysqli_fetch_assoc($result_id);
-                if (isset($product['matheloai'])) {
-                    $danhmuc_id = $product['matheloai'];
-                    $sql_danhmuc = "SELECT * FROM theloai where matheloai = $danhmuc_id";
+                if (isset($product['Theloai_ID'])) {
+                    $danhmuc_id = $product['Theloai_ID'];
+                    $sql_danhmuc = "SELECT * FROM theloai where Theloai_ID = $danhmuc_id";
                     $result_danhmuc = mysqli_query($conn, $sql_danhmuc);
                     if (mysqli_num_rows($result_danhmuc) > 0) {
                         $danhmuc = mysqli_fetch_assoc($result_danhmuc);
