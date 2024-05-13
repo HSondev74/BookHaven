@@ -34,53 +34,43 @@ if (isset($_POST['update-profile'])) {
 if (isset($_POST['change-pass'])) {
     if (isset($_GET['user-id'])) {
         $user_id = $_GET['user-id'];
+    }
+    $old_pass = $_POST['old-pass'];
+    $new_pass = $_POST['new-pass'];
+    $check_pass = $_POST['check-pass'];
+    $sql = "SELECT * FROM loginuser where email ='$user_id' ";
+    $query = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($query);
+    $matkhau = $row['matkhau'];
 
-        $sql = "SELECT matkhau FROM loginuser WHERE email = '$user_id'";
-        $result = mysqli_query($conn, $sql);
-
-        if (mysqli_num_rows($result) > 0) {
-            $row = mysqli_fetch_assoc($result);
-            $current_password = $row['matkhau'];
-
-            // Lấy thông tin mật khẩu từ form
-            $old_pass = $_POST['old-pass'];
-            $new_pass = $_POST['new-pass'];
-            $check_pass = $_POST['check-pass'];
-
-            // Kiểm tra xem mật khẩu cũ nhập vào có trùng khớp với mật khẩu hiện tại không
-            if (password_verify($old_pass, $current_password)) {
-                // Kiểm tra xem mật khẩu mới và xác nhận mật khẩu có giống nhau không
-                if ($new_pass === $check_pass) {
-                    // Mật khẩu mới và xác nhận mật khẩu trùng khớp
-
-                    // Kiểm tra mật khẩu mới có ít nhất 6 ký tự không
-                    if (strlen($new_pass) >= 6) {
-                        // Mã hóa mật khẩu mới
-                        $hashed_password = password_hash($new_pass, PASSWORD_DEFAULT);
-
-                        // Cập nhật mật khẩu mới vào cơ sở dữ liệu
-                        $update_sql = "UPDATE nguoidung SET matkhau = '$hashed_password' WHERE user_id = '$user_id'";
-                        if (mysqli_query($conn, $update_sql)) {
-                            echo "<script>alert('Đổi mật khẩu thành công');</script>";
-                        } else {
-                            echo "<script>alert('Lỗi khi cập nhật mật khẩu');</script>";
-                        }
-                    } else {
-                        echo "<script>alert('Mật khẩu mới phải có ít nhất 6 ký tự');</script>";
-                    }
-                } else {
-                    echo "<script>alert('Mật khẩu mới và xác nhận mật khẩu không khớp');</script>";
-                }
-            } else {
-                echo "<script>alert('Mật khẩu cũ không đúng');</script>";
-            }
-        } else {
-            echo "<script>alert('Người dùng không tồn tại');</script>";
-        }
-
-        // Đóng kết nối
-        mysqli_close($conn);
+    $thongbao = '';
+    if ($old_pass != $matkhau) {
+        $thongbao = 'Nhập sai mật khâu cũ';
+        echo "<script>
+        window.location.href = '../index.php?action=account&view=matkhau';
+        alert('$thongbao');
+        </script>";
     } else {
-        echo "<script>alert('User ID không hợp lệ');</script>";
+        if (strlen($new_pass) < 6) {
+            $thongbao = 'Tối thiểu phải 6 ký tự';
+            echo "<script>
+            window.location.href = '../index.php?action=account&view=matkhau';
+            alert('$thongbao');
+            </script>";
+        } elseif ($check_pass != $new_pass) {
+            $thongbao = 'Nhập sai mật khẩu hiện tai';
+            echo "<script>
+            window.location.href = '../index.php?action=account&view=matkhau';
+            alert('$thongbao');
+            </script>";
+        } else {
+            $sql_update = "UPDATE loginuser SET matkhau = '$check_pass' WHERE email = '$user_id'";
+            mysqli_query($conn, $sql_update);
+            $thongbao = 'Đổi mật khẩu thành công';
+            echo "<script>
+            window.location.href = '../index.php?action=account&view=matkhau';
+            alert('$thongbao');
+            </script>";
+        }
     }
 }

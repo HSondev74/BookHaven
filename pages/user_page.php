@@ -14,8 +14,8 @@
             // Một mảng chứa các liên kết và văn bản của chúng
             $menuItems = array(
                 'account' => 'Hồ sơ của tôi',
-                'donhang' => 'Đơn hàng của tôi',
-                'sodiachi' => 'Sổ địa chỉ',
+               //  'donhang' => 'Đơn hàng của tôi',
+               //  'sodiachi' => 'Sổ địa chỉ',
                 'matkhau' => 'Đổi mật khẩu'
             );
             ?>

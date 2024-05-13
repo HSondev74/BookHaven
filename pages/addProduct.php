@@ -6,10 +6,6 @@ if (!isset($_SESSION['cart'])) {
      $_SESSION['cart'] = array();
 }
 
-if (isset($_GET['size'])) {
-     $get_size = $_GET['size'];
-}
-
 
 // them san pham
 if (isset($_GET['idsp']) && isset($_GET['muangay'])) {
@@ -59,7 +55,7 @@ if (isset($_GET['idsp']) && isset($_GET['muangay'])) {
 
           $found = false;
           foreach ($_SESSION['cart'] as &$cart_item) {
-               if ($cart_item['id'] == $id && $cart_item['size'] == $get_size) {
+               if ($cart_item['id'] == $id) {
                     $cart_item['soluong'] += $soluong;
                     $found = true;
                     break;
