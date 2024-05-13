@@ -38,7 +38,7 @@ if (isset($_POST['min_price_select']) && isset($_POST['max_price_select']) && (i
     $category_ids = implode(',', $selected_categories);
     $min_price = $_POST['min_price_select'];
     $max_price = $_POST['max_price_select'];
-    $sql = "SELECT * FROM sanpham WHERE Gia BETWEEN $min_price AND $max_price and  matheloai IN ($category_ids) ";
+    $sql = "SELECT * FROM sanpham WHERE Gia BETWEEN $min_price AND $max_price and Theloai_ID IN ($category_ids) ";
 }
 
 if (isset($_POST['sort'])) {

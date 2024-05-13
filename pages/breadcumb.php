@@ -31,7 +31,7 @@
         if (isset($_GET['category'])) {
             $category_id = $_GET['category'];
             // Truy vấn cơ sở dữ liệu để lấy tên danh mục dựa trên category_id
-            $sql_category_name = "SELECT Ten FROM theloai WHERE matheloai = $category_id";
+            $sql_category_name = "SELECT TenTheloai FROM theloai WHERE Theloai_ID = $category_id";
             $result_category_name = mysqli_query($conn, $sql_category_name);
             if (mysqli_num_rows($result_category_name) > 0) {
                 $category_name = mysqli_fetch_assoc($result_category_name)['TenTheloai'];
