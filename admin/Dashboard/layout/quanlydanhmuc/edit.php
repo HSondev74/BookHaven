@@ -1,6 +1,6 @@
 <?php
 // Lấy dữ liệu từ database
-$sql_sua = "SELECT * FROM theloai where matheloai= '$_GET[id]' LIMIT 1";
+$sql_sua = "SELECT * FROM theloai where Theloai_ID= '$_GET[id]' LIMIT 1";
 $row_sua = mysqli_query($conn, $sql_sua);
 
 ?>
@@ -12,14 +12,14 @@ $row_sua = mysqli_query($conn, $sql_sua);
      align-items: center;
      grid-gap: 16px;
      margin: 20px 30px;">
-     <li>
-          <a href="index.php" style="color: var(--dark-grey);">Dashboard</a>
-     </li>
-     <li><i class='bx bx-chevron-right'></i></li>
-     <li>
-          <a class="active" href="" style="pointer-events: none;
+   <li>
+      <a href="index.php" style="color: var(--dark-grey);">Dashboard</a>
+   </li>
+   <li><i class='bx bx-chevron-right'></i></li>
+   <li>
+      <a class="active" href="" style="pointer-events: none;
 color: var(--blue);">Sửa danh mục</a>
-     </li>
+   </li>
 </ul>
 <div style="width: 80%;
             margin: 20px auto;
@@ -27,20 +27,20 @@ color: var(--blue);">Sửa danh mục</a>
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-     <h2>Sửa Danh mục</h2>
-     <form action="Dashboard/layout/quanlydanhmuc/xuly.php?id=<?php echo $_GET['id'] ?>" method="POST">
-          <?php
+   <h2>Sửa Danh mục</h2>
+   <form action="Dashboard/layout/quanlydanhmuc/xuly.php?id=<?php echo $_GET['id'] ?>" method="POST">
+      <?php
           while ($row = mysqli_fetch_array($row_sua)) {
           ?>
-               <div class="form-group">
-                    <label for="category_id">ID Danh mục:</label>
-                    <input type="text" id="category_id" name="category_id" value="<?php echo $row['matheloai'] ?>" readonly>
-               </div>
-               <div class="form-group">
-                    <label for="category_name">Tên danh mục:</label>
-                    <input type="text" id="category_name" name="category_name" value="<?php echo $row['Ten'] ?>">
-               </div>
-               <button class="save" type="submit" name="btnLuu">Lưu</button>
-          <?php } ?>
-     </form>
+      <div class="form-group">
+         <label for="category_id">ID Danh mục:</label>
+         <input type="text" id="category_id" name="category_id" value="<?php echo $row['Theloai_ID'] ?>" readonly>
+      </div>
+      <div class="form-group">
+         <label for="category_name">Tên danh mục:</label>
+         <input type="text" id="category_name" name="category_name" value="<?php echo $row['TenTheloai'] ?>">
+      </div>
+      <button class="save" type="submit" name="btnLuu">Lưu</button>
+      <?php } ?>
+   </form>
 </div>

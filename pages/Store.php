@@ -23,7 +23,7 @@ if (isset($_GET['category'])) {
 if (isset($_POST['category'])) {
     $selected_categories = $_POST['category'];
     $category_ids = implode(',', $selected_categories);
-    $sql .= " WHERE matheloai IN ($category_ids)";
+    $sql .= " WHERE Theloai_ID IN ($category_ids)";
 }
 
 

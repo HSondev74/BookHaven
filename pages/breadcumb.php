@@ -47,9 +47,9 @@
             $result_id = mysqli_query($conn, $sql_id);
             if (mysqli_num_rows($result_id) > 0) {
                 $product = mysqli_fetch_assoc($result_id);
-                if (isset($product['matheloai'])) {
-                    $danhmuc_id = $product['matheloai'];
-                    $sql_danhmuc = "SELECT * FROM theloai where matheloai = $danhmuc_id";
+                if (isset($product['Theloai_ID'])) {
+                    $danhmuc_id = $product['Theloai_ID'];
+                    $sql_danhmuc = "SELECT * FROM theloai where Theloai_ID = $danhmuc_id";
                     $result_danhmuc = mysqli_query($conn, $sql_danhmuc);
                     if (mysqli_num_rows($result_danhmuc) > 0) {
                         $danhmuc = mysqli_fetch_assoc($result_danhmuc);
