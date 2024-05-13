@@ -164,16 +164,9 @@ if (isset($_GET['id'])) {
                          ?>
                     </div>
 
-<<<<<<< HEAD
                     <form method="post" action="pages/uploadComment.php" style="margin: 20px 0;">
                          <textarea id="editor" name="comment" id="" cols="30" rows="10" style="width: 100%; padding: 10px;"></textarea>
                          <?php
-=======
-     <form method="post" action="pages/uploadComment.php" style="margin: 20px 0;">
-          <input type="hidden" name="id" value="<?php echo $idsp ?>">
-          <textarea id="editor" name="comment" id="" cols="30" rows="10" style="width: 100%; padding: 10px;"></textarea>
-          <?php
->>>>>>> e19a566a9370b1f74cc5c8756c01170ed56f8a47
                          if (isset($_SESSION['dangnhap'])) {
                          ?> <button name="addComment" type="submit" style="background-color: blue; color: white; padding: 5px 10px; border-radius: 10px;">Bình
                                    luận</button>
@@ -185,13 +178,8 @@ if (isset($_GET['id'])) {
                          } ?>
                     </form>
 
-<<<<<<< HEAD
                     <?php
                     $sql1 = "SELECT * FROM comments ORDER BY created_at ASC LIMIT 10";
-=======
-     <?php
-                   $sql1 = "SELECT * FROM comments WHERE product_id = {$idsp} ORDER BY created_at DESC LIMIT 10";
->>>>>>> e19a566a9370b1f74cc5c8756c01170ed56f8a47
                     $result1 = mysqli_query($conn, $sql1);
                     if (mysqli_num_rows($result1) > 0) {
                          while ($row1 = mysqli_fetch_assoc($result1)) {
