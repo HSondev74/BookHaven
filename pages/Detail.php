@@ -2,18 +2,18 @@
 if (isset($_GET['id'])) {
 
      $idsp = $_GET['id'];
-     $sql = "SELECT * FROM sanpham where ID = '" . $idsp . "'";
+     $sql = "SELECT * FROM sanpham where Sanpham_ID = '" . $idsp . "'";
      $result = mysqli_query($conn, $sql);
 
      if ($result->num_rows > 0) {
           while ($product = $result->fetch_assoc()) {
-               $images = $product['HinhAnh'];
+               $images = $product['Hinhanh'];
 
-               $danhmuc_id = $product['matheloai'];
-               $sql_danhmuc = "SELECT Ten FROM theloai WHERE matheloai = $danhmuc_id";
+               $danhmuc_id = $product['Theloai_ID'];
+               $sql_danhmuc = "SELECT TenTheloai FROM theloai WHERE Theloai_ID = $danhmuc_id";
                $result_danhmuc = mysqli_query($conn, $sql_danhmuc);
                $row_danhmuc = mysqli_fetch_assoc($result_danhmuc);
-               $tendanhmuc = $row_danhmuc['Ten'];
+               $tendanhmuc = $row_danhmuc['TenTheloai'];
 
 
 ?>
@@ -63,7 +63,7 @@ if (isset($_GET['id'])) {
                                         </div>
 
                                         <div class="parameter-detail">
-                                             <div class="para">Code: <b>VIBES - <?php echo $product['ID'] ?></b></div>
+                                             <div class="para">Code: <b>VIBES - <?php echo $product['Sanpham_ID'] ?></b></div>
                                              <div class="para">Tình trạng:
                                                   <b>Còn hàng</b>
                                              </div>
@@ -96,8 +96,8 @@ if (isset($_GET['id'])) {
                                         </div>
 
                                         <div class="detail-pay">
-                                             <a href="pages/addProduct.php?idsp=<?php echo $product['ID'] ?>&them" class="detail-add-pay">Thêm vào giỏ hàng</a>
-                                             <a href="pages/addProduct.php?idsp=<?php echo $product['ID'] ?>&muangay" class="detail-buy">Mua Ngay</a href="">
+                                             <a href="pages/addProduct.php?idsp=<?php echo $product['Sanpham_ID'] ?>&them" class="detail-add-pay">Thêm vào giỏ hàng</a>
+                                             <a href="pages/addProduct.php?idsp=<?php echo $product['Sanpham_ID'] ?>&muangay" class="detail-buy">Mua Ngay</a href="">
                                              <!-- <a href="index.php?action=chitietsanpham&id=<?php echo $_GET['id'] ?>" id="submitBtn" class="detail-buy">Mua Ngay</a href=""> -->
                                         </div>
 
@@ -118,24 +118,24 @@ if (isset($_GET['id'])) {
                               $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
                               $start_index = ($current_page - 1) * $products_per_page;
 
-                              $sql = "SELECT * FROM sanpham WHERE matheloai = $danhmuc_id and ID != $idsp LIMIT $start_index, $products_per_page";
+                              $sql = "SELECT * FROM sanpham WHERE Theloai_ID = $danhmuc_id and Sanpham_ID != $idsp LIMIT $start_index, $products_per_page";
 
                               $result = mysqli_query($conn, $sql);
 
                               if ($result->num_rows > 0) {
                                    while ($product = $result->fetch_assoc()) {
-                                        $images = $product['HinhAnh'];
+                                        $images = $product['Hinhanh'];
                               ?>
 
                                         <div class="product">
-                                             <a href="index.php?action=chitietsanpham&id=<?php echo $product['ID']; ?>">
+                                             <a href="index.php?action=chitietsanpham&id=<?php echo $product['Sanpham_ID']; ?>">
 
                                                   <div class="discount"> -20% </div>
                                                   <div class="product-image">
                                                        <img src="admin/Dashboard/layout/quanlysanpham/uploads/<?php echo $images; ?>" alt="">
-                                                       <!-- <a href="pages/addProduct.php?idsp=<?php echo $product['ID'] ?>" class="cart-popup" name="addProduct"><i class='bx bx-cart-add'></i></a> -->
+                                                       <!-- <a href="pages/addProduct.php?idsp=<?php echo $product['Sanpham_ID'] ?>" class="cart-popup" name="addProduct"><i class='bx bx-cart-add'></i></a> -->
                                                   </div>
-                                                  <span class="heart-product" onclick="changeFavorites(this,<?php echo $product['ID']; ?>)" data-id="<?php echo $product['ID']; ?> "><i class='bx bxs-heart'></i></span>
+                                                  <span class="heart-product" onclick="changeFavorites(this,<?php echo $product['Sanpham_ID']; ?>)" data-id="<?php echo $product['Sanpham_ID']; ?> "><i class='bx bxs-heart'></i></span>
                                                   <p class=" product-title"><?php echo $product['Ten'] ?></p>
                                                   <p class="product-price">
                                                        <?php
@@ -153,7 +153,7 @@ if (isset($_GET['id'])) {
                     <!-- phan trang -->
                     <div class="pagination">
                          <?php
-                         $sql_count = "SELECT COUNT(*) AS total FROM sanpham WHERE matheloai = $danhmuc_id";
+                         $sql_count = "SELECT COUNT(*) AS total FROM sanpham WHERE Theloai_ID = $danhmuc_id";
                          $result_count = mysqli_query($conn, $sql_count);
                          $row_count = mysqli_fetch_assoc($result_count);
                          $total_pages = ceil($row_count['total'] / $products_per_page);
@@ -179,14 +179,14 @@ if (isset($_GET['id'])) {
                     </form>
 
                     <?php
-                    $sql1 = "SELECT * FROM comments ORDER BY created_at ASC LIMIT 10";
+                    $sql1 = "SELECT * FROM comments ORDER BY Create_At ASC LIMIT 10";
                     $result1 = mysqli_query($conn, $sql1);
                     if (mysqli_num_rows($result1) > 0) {
                          while ($row1 = mysqli_fetch_assoc($result1)) {
-                              $timestamp = strtotime($row1['created_at']);
+                              $timestamp = strtotime($row1['Created_At']);
                               $formatted_time = date("h:i A", $timestamp);
-                              $user_email = $row1['user_email'];
-                              $comment_text = $row1['comment_text'];
+                              $user_email = $row1['User_ID'];
+                              $comment_text = $row1['Comment_Text'];
 
                               echo "<div style='margin-bottom: 10px;'>";
                               echo "<div style='border: 1px solid #ccc; padding: 10px;'>";

@@ -47,19 +47,19 @@
 
                if ($result->num_rows > 0) {
                     while ($product = $result->fetch_assoc()) {
-                         $images = $product['HinhAnh'];
+                         $images = $product['Hinhanh'];
                ?>
 
                <div class="product">
-                    <a href="index.php?action=chitietsanpham&id=<?php echo $product['ID']; ?>">
+                    <a href="index.php?action=chitietsanpham&id=<?php echo $product['Sanpham_ID']; ?>">
 
                          <div class="discount"> -20% </div>
                          <div class="product-image">
                               <img src="admin/Dashboard/layout/quanlysanpham/uploads/<?php echo $images; ?>" alt="">
                               <!-- <a href="pages/addProduct.php?idsp=<?php echo $product['ID'] ?>" class="cart-popup" name="addProduct"><i class='bx bx-cart-add'></i></a> -->
                          </div>
-                         <span class="heart-product" onclick="changeFavorites(this,<?php echo $product['ID']; ?>)"
-                              data-id="<?php echo $product['ID']; ?> "><i class='bx bxs-heart'></i></span>
+                         <span class="heart-product" onclick="changeFavorites(this,<?php echo $product['Sanpham_ID']; ?>)"
+                              data-id="<?php echo $product['Sanpham_ID']; ?> "><i class='bx bxs-heart'></i></span>
                          <p class=" product-title"><?php echo $product['Ten'] ?></p>
                          <p class="product-price"><?php
                                                             $price = $product['Gia'] * 1000;
@@ -141,19 +141,19 @@
 
                if ($result->num_rows > 0) {
                     while ($product = $result->fetch_assoc()) {
-                         $images = $product['HinhAnh'];
+                         $images = $product['Hinhanh'];
                ?>
 
                <div class="product">
-                    <a href="index.php?action=chitietsanpham&id=<?php echo $product['ID']; ?>">
+                    <a href="index.php?action=chitietsanpham&id=<?php echo $product['Sanpham_ID']; ?>">
 
                          <div class="discount"> -20% </div>
                          <div class="product-image">
                               <img src="admin/Dashboard/layout/quanlysanpham/uploads/<?php echo $images; ?>" alt="">
-                              <!-- <a href="pages/addProduct.php?idsp=<?php echo $product['ID'] ?>" class="cart-popup" name="addProduct"><i class='bx bx-cart-add'></i></a> -->
+                              <!-- <a href="pages/addProduct.php?idsp=<?php echo $product['Sanpham_ID'] ?>" class="cart-popup" name="addProduct"><i class='bx bx-cart-add'></i></a> -->
                          </div>
-                         <span class="heart-product" onclick="changeFavorites(this,<?php echo $product['ID']; ?>)"
-                              data-id="<?php echo $product['ID']; ?> "><i class='bx bxs-heart'></i></span>
+                         <span class="heart-product" onclick="changeFavorites(this,<?php echo $product['Sanpham_ID']; ?>)"
+                              data-id="<?php echo $product['Sanpham_ID']; ?> "><i class='bx bxs-heart'></i></span>
                          <p class=" product-title"><?php echo $product['Ten'] ?></p>
                          <p class="product-price"><?php
                                                             $price = $product['Gia'] * 1000;

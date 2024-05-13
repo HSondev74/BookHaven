@@ -197,7 +197,7 @@
                     while ($row = mysqli_fetch_assoc($result_categories)) {
                 ?>
                     <li><a
-                              href="index.php?action=cuahang&category=<?php echo $row['matheloai']; ?>"><?php echo $row['Ten']; ?></a>
+                              href="index.php?action=cuahang&category=<?php echo $row['Theloai_ID']; ?>"><?php echo $row['TenTheloai']; ?></a>
                     </li>
                     <?php
                     }

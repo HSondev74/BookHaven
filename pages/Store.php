@@ -17,7 +17,7 @@ $sql = "SELECT * FROM sanpham";
 // Xử lý khi có tham số category được gửi từ form
 if (isset($_GET['category'])) {
     $id_cate = $_GET['category'];
-    $sql = "SELECT * FROM sanpham where matheloai = $id_cate";
+    $sql = "SELECT * FROM sanpham where Theloai_ID = $id_cate";
 }
 
 if (isset($_POST['category'])) {
@@ -91,8 +91,8 @@ $result = mysqli_query($conn, $sql);
                     <form method="post" action="index.php?action=cuahang">
                         <?php foreach ($categories as $category) : ?>
                             <div class="brand-name">
-                                <input type="checkbox" id="<?php echo $category['matheloai']; ?>" name="category[]" value="<?php echo $category['matheloai']; ?>" <?php if (isset($_POST['category']) && in_array($category['matheloai'], $_POST['category'])) echo 'checked'; ?>>
-                                <label for="<?php echo $category['matheloai']; ?>"><?php echo $category['Ten']; ?></label>
+                                <input type="checkbox" id="<?php echo $category['Theloai_ID']; ?>" name="category[]" value="<?php echo $category['Theloai_ID']; ?>" <?php if (isset($_POST['category']) && in_array($category['Theloai_ID'], $_POST['category'])) echo 'checked'; ?>>
+                                <label for="<?php echo $category['Theloai_ID']; ?>"><?php echo $category['TenTheloai']; ?></label>
                             </div>
                         <?php endforeach; ?>
                         <br>
@@ -125,18 +125,18 @@ $result = mysqli_query($conn, $sql);
 
             if ($result->num_rows > 0) {
                 while ($product = $result->fetch_assoc()) {
-                    $images = $product['HinhAnh'];
+                    $images = $product['Hinhanh'];
             ?>
 
                     <div class="product">
-                        <a href="index.php?action=chitietsanpham&id=<?php echo $product['ID']; ?>">
+                        <a href="index.php?action=chitietsanpham&id=<?php echo $product['Sanpham_ID']; ?>">
 
                             <div class="discount"> -20% </div>
                             <div class="product-image">
                                 <img src="admin/Dashboard/layout/quanlysanpham/uploads/<?php echo $images; ?>" alt="">
                                 <!-- <a href="pages/addProduct.php?idsp=<?php echo $product['ID'] ?>" class="cart-popup" name="addProduct"><i class='bx bx-cart-add'></i></a> -->
                             </div>
-                            <span class="heart-product" onclick="changeFavorites(this,<?php echo $product['ID']; ?>)" data-id="<?php echo $product['ID']; ?> "><i class='bx bxs-heart'></i></span>
+                            <span class="heart-product" onclick="changeFavorites(this,<?php echo $product['Sanpham_ID']; ?>)" data-id="<?php echo $product['Sanpham_ID']; ?> "><i class='bx bxs-heart'></i></span>
                             <p class=" product-title"><?php echo $product['Ten'] ?></p>
                             <p class="product-price"><?php
                                                         $price = $product['Gia'] * 1000;

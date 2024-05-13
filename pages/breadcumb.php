@@ -34,7 +34,7 @@
             $sql_category_name = "SELECT Ten FROM theloai WHERE matheloai = $category_id";
             $result_category_name = mysqli_query($conn, $sql_category_name);
             if (mysqli_num_rows($result_category_name) > 0) {
-                $category_name = mysqli_fetch_assoc($result_category_name)['Ten'];
+                $category_name = mysqli_fetch_assoc($result_category_name)['TenTheloai'];
                 echo  ' &gt ' . $category_name;
             }
         }
@@ -43,7 +43,7 @@
 
         if (isset($_GET['id'])) {
             $product_id = $_GET['id'];
-            $sql_id = "SELECT * FROM sanpham WHERE ID = $product_id  ";
+            $sql_id = "SELECT * FROM sanpham WHERE Sanpham_ID = $product_id  ";
             $result_id = mysqli_query($conn, $sql_id);
             if (mysqli_num_rows($result_id) > 0) {
                 $product = mysqli_fetch_assoc($result_id);
@@ -53,7 +53,7 @@
                     $result_danhmuc = mysqli_query($conn, $sql_danhmuc);
                     if (mysqli_num_rows($result_danhmuc) > 0) {
                         $danhmuc = mysqli_fetch_assoc($result_danhmuc);
-                        echo  "<a href='$trangchu_href'>$trangchu</a>" . ' &gt ' . $danhmuc['Ten'] . ' &gt ' . $product['Ten'];
+                        echo  "<a href='$trangchu_href'>$trangchu</a>" . ' &gt ' . $danhmuc['Ten'] . ' &gt ' . $product['TenTheloai'];
                     }
                 }
             }
